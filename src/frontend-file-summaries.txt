@@ -1,0 +1,16 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, authentication flow, profile setup modal, and routes for home, category, cart, checkout, and order confirmation pages.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management, order creation, and order retrieval with proper loading states and cache invalidation.",
+  "frontend/src/state/cart.ts": "Zustand store for shopping cart state management with localStorage persistence, supporting add/remove/update operations and total calculations.",
+  "frontend/src/utils/inr.ts": "Utility functions for formatting and parsing Indian Rupee (INR) currency values with the ₹ symbol.",
+  "frontend/src/data/products.ts": "Product catalog data structure defining all game modes (Lifesteal, Token SMP, Aura SMP, BoxPVP) with their subcategories and items with INR pricing.",
+  "frontend/src/pages/HomePage.tsx": "Landing page displaying hero banner with Aura MC branding, server IP, Discord link, game mode category cards, and floating cart button.",
+  "frontend/src/pages/CategoryPage.tsx": "Dynamic category page showing subcategories and products with add-to-cart functionality and breadcrumb navigation.",
+  "frontend/src/pages/CartPage.tsx": "Shopping cart page displaying cart items with quantity controls, removal options, order summary, and checkout button requiring authentication.",
+  "frontend/src/pages/CheckoutPage.tsx": "Checkout page collecting Minecraft username and UPI transaction reference, displaying order summary, and submitting orders to backend.",
+  "frontend/src/pages/OrderConfirmationPage.tsx": "Order confirmation page fetching and displaying complete order details including order ID, buyer info, items purchased, and total amount paid.",
+  "frontend/src/components/Header.tsx": "Site header with logo, navigation, cart indicator with item count, user profile display, and login/logout functionality.",
+  "frontend/src/components/Footer.tsx": "Site footer with copyright notice and caffeine.ai attribution with heart icon.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup requiring name input before accessing the application.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using purple accent theme for both light and dark modes with professional Minecraft store aesthetic."
+}

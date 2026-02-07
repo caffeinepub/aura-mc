@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a professional Minecraft server store website for Aura MC with a categorized product catalog (Lifesteal, Token SMP, Aura SMP, BoxPVP), add-to-cart and view cart flow, and a checkout/transaction page supporting UPI-only payments, priced in INR (₹), plus homepage messaging, Discord link, and server IP.",
+  "architectural_notes": [
+    "Currency display must be INR (₹/rupees).",
+    "Payments limited to UPI only (no other payment methods)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-professional-apple-like-storefront-homepage-for-the-minecraft-server-store-named-aura-mc-with-the-following-visible-elements-1-headline-text-happy-gaming-and-happy-shopping-2-server-ip-displayed-as-play-auramc-xyz-3-a-discord-call-to-action-that-links-to-https-discord-gg-p8zvvxyjaf-and-4-primary-navigation-tiles-buttons-for-lifesteal-token-smp-aura-smp-boxpvp-plus-a-clearly-visible-view-cart-entry-point",
+      "title": "Create a professional, Apple-like storefront homepage for the Minecraft server store named \"Aura MC\" with the following visible elements: (1) headline text \"Happy Gaming\" and \"Happy Shopping\", (2) server IP displayed as \"play.auramc.xyz\", (3) a Discord call-to-action that links to https://discord.gg/P8ZVVXYJAf, and (4) primary navigation tiles/buttons for: Lifesteal, Token SMP, Aura SMP, BoxPVP, plus a clearly visible \"View Cart\" entry point.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-store-catalog-ui-that-matches-the-requested-category-subcategory-items-flow-where-clicking-each-top-level-category-reveals-its-subcategories-and-clicking-a-subcategory-reveals-purchasable-items-with-names-and-inr-prices-shown-with-the-symbol-catalog-structure-and-prices-must-exactly-match-the-provided-list-for-lifesteal-token-smp-aura-smp-and-boxpvp",
+      "title": "Implement a store catalog UI that matches the requested category → subcategory → items flow, where clicking each top-level category reveals its subcategories, and clicking a subcategory reveals purchasable items with names and INR prices shown with the ₹ symbol. Catalog structure and prices must exactly match the provided list for Lifesteal, Token SMP, Aura SMP, and BoxPVP.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-add-to-cart-flow-for-every-purchasable-item-in-the-catalog-with-a-cart-state-that-supports-adding-items-adjusting-quantity-if-the-same-item-is-added-multiple-times-removing-items-and-showing-a-running-subtotal-in-inr",
+      "title": "Add an \"Add to Cart\" flow for every purchasable item in the catalog, with a cart state that supports: adding items, adjusting quantity (if the same item is added multiple times), removing items, and showing a running subtotal in INR (₹).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dedicated-view-cart-page-route-that-includes-a-proceed-to-transaction-checkout-action-and-from-there-a-transaction-page-that-supports-upi-only-checkout-no-other-payment-methods-shown-the-transaction-page-must-collect-buyer-details-needed-to-fulfill-the-purchase-at-minimum-minecraft-username-and-a-field-for-upi-payment-reference-utr-display-the-final-total-in-and-allow-submitting-an-order-transaction-request",
+      "title": "Create a dedicated \"View Cart\" page/route that includes a \"Proceed to Transaction\" (checkout) action, and from there a transaction page that supports UPI-only checkout (no other payment methods shown). The transaction page must collect buyer details needed to fulfill the purchase (at minimum: Minecraft username and a field for UPI payment reference/UTR), display the final total in ₹, and allow submitting an order/transaction request.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-professional-visual-theme-inspired-by-premium-tech-storefronts-clean-layout-strong-typography-product-cards-consistent-spacing-while-still-fitting-a-minecraft-server-store-avoid-a-blue-purple-primary-palette-use-a-distinct-color-system-and-apply-it-consistently-across-home-catalog-cart-and-checkout",
+      "title": "Apply a coherent, professional visual theme inspired by premium tech storefronts (clean layout, strong typography, product cards, consistent spacing) while still fitting a Minecraft server store. Avoid a blue/purple primary palette; use a distinct color system and apply it consistently across home, catalog, cart, and checkout.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-brand-assets-for-aura-mc-logo-homepage-banner-background-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
+      "title": "Add generated static brand assets for Aura MC (logo + homepage banner/background) and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-frontend-transaction-checkout-submission-to-the-backend-createorder-method-and-after-successful-submission-show-an-order-confirmation-view-that-displays-order-id-minecraft-username-upi-utr-reference-purchased-items-name-quantity-unit-price-in-and-final-total-in",
+      "title": "Wire the frontend transaction/checkout submission to the backend createOrder method, and after successful submission show an order confirmation view that displays: order id, Minecraft username, UPI UTR/reference, purchased items (name, quantity, unit price in ₹), and final total in ₹.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Aura MC Minecraft server store website with professional design inspired by Apple MC/Blockfun Store",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Homepage: show 'Happy Gaming' and 'Happy Shopping', Discord invite link, server IP (play.auramc.xyz), and navigation to 4 store categories + View Cart",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Store catalog/category navigation: Lifesteal, Token SMP, Aura SMP, BoxPVP with subcategories and listed items/prices",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Shopping cart: add-to-cart functionality, View Cart page, show prices in INR (₹/rupees)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Checkout/transaction page from View Cart with UPI-only payment option",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Implement backend order storage and retrieval in the single Motoko actor: persist submitted orders (cart line items, quantities, total ₹ amount, buyer Minecraft username, UPI reference/UTR, timestamp, and a generated order id). Provide canister methods used by the frontend to create an order and to fetch an order by id for confirmation display.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend order persistence in the single Motoko actor: when a user submits checkout/transaction details, create and store an Order containing (1) generated order id, (2) line items (product name, unit price in ₹, quantity), (3) computed total in ₹, (4) buyer Minecraft username, (5) UPI payment reference/UTR, and (6) timestamp.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Expose backend canister methods for checkout flow: (1) createOrder(payload) -> orderId and (2) getOrderById(orderId) -> order details for confirmation display.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Aura MC",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

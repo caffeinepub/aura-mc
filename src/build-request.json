@@ -1,0 +1,95 @@
+{
+  "kind": "build_request",
+  "title": "Persist orders in Motoko backend and show post-checkout order confirmation",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Implement backend order persistence in the single Motoko actor: when a user submits checkout/transaction details, create and store an Order containing (1) generated order id, (2) line items (product name, unit price in ₹, quantity), (3) computed total in ₹, (4) buyer Minecraft username, (5) UPI payment reference/UTR, and (6) timestamp.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-9"
+        ],
+        "quotes": [
+          "add a transaction page in view cart soo they can buy add only upi option to buy stuff",
+          "add add to Cart where it is written rupees"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A stable Order type/model exists in the backend with fields: orderId, items[{name, unitPriceInr, quantity}], totalInr, minecraftUsername, upiUtr, createdAt (timestamp).",
+        "A new order can be created and stored without losing data across page refreshes and subsequent calls (i.e., persisted in canister state).",
+        "The backend generates a unique orderId for each submitted order.",
+        "The backend computes totalInr from the provided line items (unitPriceInr * quantity) and stores the computed value with the order."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Expose backend canister methods for checkout flow: (1) createOrder(payload) -> orderId and (2) getOrderById(orderId) -> order details for confirmation display.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-9"
+        ],
+        "quotes": [
+          "add a transaction page in view cart soo they can buy",
+          "add add to Cart"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a callable canister update method to create an order and return the generated orderId.",
+        "There is a callable canister query (or update) method to fetch a stored order by id, returning all stored fields.",
+        "If getOrderById is called with an unknown orderId, the method returns an explicit 'not found' result (does not trap)."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Wire the frontend transaction/checkout submission to the backend createOrder method, and after successful submission show an order confirmation view that displays: order id, Minecraft username, UPI UTR/reference, purchased items (name, quantity, unit price in ₹), and final total in ₹.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-9"
+        ],
+        "quotes": [
+          "add a transaction page in view cart soo they can buy",
+          "add only upi option to buy stuff"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the transaction form calls the backend createOrder method with the cart line items and buyer details.",
+        "After createOrder succeeds, the UI navigates to (or renders) a confirmation state/view that shows the returned orderId and the full order summary.",
+        "The confirmation view fetches the order details from the backend via getOrderById (or uses returned data plus a fetch-by-id) and renders values in English.",
+        "All money amounts are displayed using the ₹ symbol and INR values.",
+        "The cart is cleared only after an order is successfully created (not on failed submission)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Keep all Motoko logic in a single main actor (no multi-canister or multi-actor backend design).",
+    "Do not edit files under frontend/src/components/ui or other immutablePaths; compose existing UI components instead.",
+    "Do not add any non-UPI payment method options to checkout UI."
+  ],
+  "nonGoals": [
+    "Processing payments automatically (no payment gateway integration).",
+    "Generating UPI QR codes or deep links.",
+    "Admin dashboard for managing orders.",
+    "Third-party authentication beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

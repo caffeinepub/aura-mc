@@ -1,0 +1,29 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-wire-the-frontend-transaction-checkout-submission-to-the-backend-createorder-method-and-after-successful-submission-show-an-order-confirmation-view-that-displays-order-id-minecraft-username-upi-utr-reference-purchased-items-name-quantity-unit-price-in-and-final-total-in",
+      "featureTitle": "Wire the frontend transaction/checkout submission to the backend createOrder method, and after successful submission show an order confirmation view that displays: order id, Minecraft username, UPI UTR/reference, purchased items (name, quantity, unit price in ₹), and final total in ₹.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/CheckoutPage.tsx",
+        "frontend/src/pages/OrderConfirmationPage.tsx",
+        "frontend/src/state/cart.ts",
+        "frontend/src/utils/inr.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T10:41:57.119Z",
+  "summary": "Backend and frontend add an order-creation + confirmation flow, but backend data model/persistence does not match the requested stable Order schema (field names/types differ and stable persistence across upgrades is not evidenced). Several additional, unrequested features were introduced (access control system, user profiles, admin token initialization, branding/footer changes).",
+  "missing_requirements": [
+    {
+      "id": "REQ-8",
+      "requirement": "Backend must define a stable Order model with fields: orderId, items[{name, unitPriceInr, quantity}], totalInr, minecraftUsername, upiUtr, createdAt (timestamp).",
+      "reason": "The diff shows an Order type, but it is not the required schema (different field names like id/buyer/upiRef/totalINR/timestamp and item fields product/unitPriceINR). Also, the diff does not show any `stable` type/vars for persistence across upgrades.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Order persistence should not lose data across refreshes/subsequent calls (persisted in canister state).",
+      "reason": "While `orders` is stored in an actor variable, the diff does not show `stable` storage or preupgrade/postupgrade handling; persistence across upgrades is not evidenced. (Page refresh persistence is implied but not explicitly ensured beyond in-memory canister state.)",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "getOrderById(orderId) returns an explicit 'not found' result and does not trap for unknown orderId.",
+      "reason": "Unknown orderId appears to return `null`, but the implementation is truncated and also includes `Runtime.trap` for unauthorized access; the requirement only specifies unknown IDs explicitly (not authorization), and the diff does not show a structured not-found result variant beyond `?` nor the full method behavior due to truncation.",
+      "evidence": [
+        "backend/main.mo (getOrderById truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Introduced access control system with authorization mixins and admin/user permission checks, including actor initialization via secret token.",
+      "reason": "BuildRequest did not ask for an authorization layer beyond existing Internet Identity usage for checkout; adding admin token initialization/permission system is extra scope.",
+      "evidence": [
+        "backend/main.mo (AccessControl, MixinAuthorization, permission checks)",
+        "frontend/src/hooks/useActor.ts (calls _initializeAccessControlWithSecret, reads caffeineAdminToken)",
+        "frontend/src/utils/urlParams.ts (session/url param persistence utilities for tokens)"
+      ]
+    },
+    {
+      "description": "Added user profile storage and a profile setup modal gating behavior (name collection).",
+      "reason": "BuildRequest focuses on order persistence and order confirmation; user profile CRUD and modal flow were not requested.",
+      "evidence": [
+        "backend/main.mo (UserProfile, getCallerUserProfile, saveCallerUserProfile, userProfiles map)",
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/App.tsx (profile setup flow, useGetCallerUserProfile/useSaveCallerUserProfile)",
+        "frontend/src/hooks/useQueries.ts (profile queries/mutations)"
+      ]
+    },
+    {
+      "description": "Added/changed site footer branding and external link (caffeine.ai).",
+      "reason": "Not requested as part of the order persistence/confirmation feature set.",
+      "evidence": [
+        "frontend/src/components/Footer.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/data/products.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/CategoryPage.tsx",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/OrderConfirmationPage.tsx",
+    "frontend/src/state/cart.ts",
+    "frontend/src/utils/inr.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Checkout submission + order confirmation view wired to Motoko order APIs",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Submit UPI checkout details to backend createOrder and show a post-checkout confirmation view with persisted order details",
+      "acceptanceCriteria": [
+        "Submitting the transaction form calls the backend createOrder method with the cart line items and buyer details.",
+        "After createOrder succeeds, the UI navigates to (or renders) a confirmation state/view that shows the returned orderId and the full order summary.",
+        "The confirmation view fetches the order details from the backend via getOrderById (or uses returned data plus a fetch-by-id) and renders values in English.",
+        "All money amounts are displayed using the ₹ symbol and INR values.",
+        "The cart is cleared only after an order is successfully created (not on failed submission)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useOrders.ts",
+          "operation": "create",
+          "description": "Add a small orders hook that uses useActor() to call backend createOrder and getOrderById, exposing loading/error states appropriate for the checkout + confirmation UI."
+        },
+        {
+          "path": "frontend/src/utils/inr.ts",
+          "operation": "create",
+          "description": "Add INR formatting utilities to render bigint INR amounts with the ₹ symbol consistently across checkout and confirmation views."
+        },
+        {
+          "path": "frontend/src/pages/CheckoutPage.tsx",
+          "operation": "create",
+          "description": "Create a UPI-only checkout/transaction page that collects Minecraft username + UPI UTR/reference, reads current cart line items, calls createOrder on submit, and only clears the cart after success (do not introduce any non-UPI payment options). Compose existing shadcn/ui components from frontend/src/components/ui (do not modify them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OrderConfirmationPage.tsx",
+          "operation": "create",
+          "description": "Create an order confirmation page that takes an orderId from route params/state, fetches order details via getOrderById, and renders order id, Minecraft username, UPI UTR/reference, items (name/product, quantity, unit price ₹), and total ₹ in English. Compose existing shadcn/ui components from frontend/src/components/ui (do not modify them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/state/cart.ts",
+          "operation": "create",
+          "description": "Add/centralize cart state helpers (read items, update quantities, clear cart) so checkout can reliably read line items and clear only after successful order creation (persist in local storage if the existing app already does so)."
+        },
+        {
+          "path": "frontend/src/pages/CartPage.tsx",
+          "operation": "modify",
+          "description": "Wire the existing cart page to navigate to the new checkout page and ensure the cart line items passed/available to checkout include product name, unit price in ₹ (INR), and quantity."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register routes for the checkout page and the order confirmation page (e.g., /checkout and /order/:orderId) and wire navigation so successful checkout redirects to confirmation."
+        }
+      ]
+    }
+  ]
+}
