@@ -7,6 +7,12 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface OrderPayload {
+    discordName: string;
+    upiRef: string;
+    buyer: string;
+    items: Array<OrderItem>;
+}
 export interface OrderItem {
     unitPriceINR: bigint;
     quantity: bigint;
@@ -15,6 +21,7 @@ export interface OrderItem {
 export interface OrderConfirmation {
     id: bigint;
     totalINR: bigint;
+    discordName: string;
     upiRef: string;
     timestamp: bigint;
     buyer: string;
@@ -23,11 +30,6 @@ export interface OrderConfirmation {
 export interface UserProfile {
     name: string;
     minecraftUsername?: string;
-}
-export interface OrderPayload {
-    upiRef: string;
-    buyer: string;
-    items: Array<OrderItem>;
 }
 export enum UserRole {
     admin = "admin",

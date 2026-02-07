@@ -81,6 +81,12 @@ export default function OrderConfirmationPage() {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">
+                    Discord Name
+                  </p>
+                  <p className="font-semibold">{order.discordName}</p>
+                </div>
+                <div className="sm:col-span-2">
+                  <p className="text-sm font-medium text-muted-foreground">
                     UPI Reference
                   </p>
                   <p className="font-mono font-semibold">{order.upiRef}</p>
@@ -123,8 +129,16 @@ export default function OrderConfirmationPage() {
 
               <div className="rounded-lg bg-muted/50 p-4">
                 <p className="text-sm text-muted-foreground">
-                  Your items will be delivered to your Minecraft account shortly. If you
-                  have any questions, please contact our support team on Discord.
+                  ⏱️ <strong>Delivery may take time.</strong> Your items will be delivered to your Minecraft account shortly. 
+                  For support, join our{' '}
+                  <a
+                    href="https://discord.gg/P8ZVVXYJAf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    Discord server
+                  </a>.
                 </p>
               </div>
             </CardContent>

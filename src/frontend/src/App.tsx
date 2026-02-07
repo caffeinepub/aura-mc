@@ -15,12 +15,15 @@ import { ThemeProvider } from 'next-themes';
 
 function Layout() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
+    <div className="minecraft-bg-wrapper">
+      <div className="minecraft-bg-overlay" />
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

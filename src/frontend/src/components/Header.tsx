@@ -5,12 +5,14 @@ import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { useCartStore } from '../state/cart';
 import { useQueryClient } from '@tanstack/react-query';
 import { useGetCallerUserProfile } from '../hooks/useQueries';
+import { formatINR } from '../utils/inr';
 
 export default function Header() {
   const { login, clear, loginStatus, identity } = useInternetIdentity();
   const { data: userProfile } = useGetCallerUserProfile();
   const queryClient = useQueryClient();
   const totalItems = useCartStore((state) => state.getTotalItems());
+  const totalPrice = useCartStore((state) => state.getTotalPrice());
 
   const isAuthenticated = !!identity;
   const isLoggingIn = loginStatus === 'logging-in';
@@ -39,9 +41,9 @@ export default function Header() {
           <img
             src="/assets/generated/aura-mc-logo.dim_512x512.png"
             alt="Aura MC"
-            className="h-10 w-10"
+            className="h-10 w-10 animate-float"
           />
-          <span className="text-xl font-bold">Aura MC</span>
+          <span className="text-xl font-bold animate-glow">Aura MC</span>
         </Link>
 
         <nav className="flex items-center gap-4">
@@ -52,13 +54,16 @@ export default function Header() {
             </div>
           )}
           
-          <Button asChild variant="outline" size="sm" className="relative">
+          <Button asChild variant="outline" size="sm" className="relative gap-2">
             <Link to="/cart">
               <ShoppingCart className="h-4 w-4" />
               {totalItems > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                  {totalItems}
-                </span>
+                <>
+                  <span className="hidden sm:inline">{formatINR(totalPrice)}</span>
+                  <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                    {totalItems}
+                  </span>
+                </>
               )}
             </Link>
           </Button>

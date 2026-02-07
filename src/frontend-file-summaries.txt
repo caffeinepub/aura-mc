@@ -1,16 +1,17 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup, authentication flow, profile setup modal, and routes for home, category, cart, checkout, and order confirmation pages.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, authentication flow, profile setup modal, routes for all pages, and Layout wrapper with Minecraft-themed background layer and overlay for consistent visual treatment across all pages.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management, order creation, and order retrieval with proper loading states and cache invalidation.",
   "frontend/src/state/cart.ts": "Zustand store for shopping cart state management with localStorage persistence, supporting add/remove/update operations and total calculations.",
   "frontend/src/utils/inr.ts": "Utility functions for formatting and parsing Indian Rupee (INR) currency values with the ₹ symbol.",
-  "frontend/src/data/products.ts": "Product catalog data structure defining all game modes (Lifesteal, Token SMP, Aura SMP, BoxPVP) with their subcategories and items with INR pricing.",
-  "frontend/src/pages/HomePage.tsx": "Landing page displaying hero banner with Aura MC branding, server IP, Discord link, game mode category cards, and floating cart button.",
-  "frontend/src/pages/CategoryPage.tsx": "Dynamic category page showing subcategories and products with add-to-cart functionality and breadcrumb navigation.",
-  "frontend/src/pages/CartPage.tsx": "Shopping cart page displaying cart items with quantity controls, removal options, order summary, and checkout button requiring authentication.",
-  "frontend/src/pages/CheckoutPage.tsx": "Checkout page collecting Minecraft username and UPI transaction reference, displaying order summary, and submitting orders to backend.",
-  "frontend/src/pages/OrderConfirmationPage.tsx": "Order confirmation page fetching and displaying complete order details including order ID, buyer info, items purchased, and total amount paid.",
-  "frontend/src/components/Header.tsx": "Site header with logo, navigation, cart indicator with item count, user profile display, and login/logout functionality.",
-  "frontend/src/components/Footer.tsx": "Site footer with copyright notice and caffeine.ai attribution with heart icon.",
+  "frontend/src/data/products.ts": "Product catalog data structure defining all game modes (Lifesteal, Token SMP, Aura SMP, BoxPVP, Bundle) with their subcategories, items with INR pricing, emojis, and Bundle-specific metadata for rewards and validity notes.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with animated hero banner featuring \"Farm the Aura\" headline, server info, Discord link, five game mode category cards (including Bundle) with icons, and coming-soon Mini Game Store section.",
+  "frontend/src/pages/CategoryPage.tsx": "Dynamic category page with special Bundle handling showing rewards list and validity note, standard subcategory navigation for other categories, and products with add-to-cart functionality.",
+  "frontend/src/pages/CartPage.tsx": "Shopping cart page with disclaimer about purchasing in-game items, quantity controls, removal options, order summary, authentication-gated checkout button, and decorative Minecraft-themed store illustration displayed below cart items.",
+  "frontend/src/pages/CheckoutPage.tsx": "Checkout page collecting Minecraft username, Discord name, and UPI transaction reference with validation, helper text, delivery notice, and order submission to backend.",
+  "frontend/src/pages/OrderConfirmationPage.tsx": "Order confirmation page displaying complete order details including order ID, Discord name, Minecraft username, UPI reference, items purchased, total paid, and delivery/support information.",
+  "frontend/src/components/Header.tsx": "Site header with animated logo and branding, navigation, cart indicator showing both item count badge and subtotal in INR when cart has items, user profile display, and login/logout functionality.",
+  "frontend/src/components/Footer.tsx": "Site footer with Aura MC branding and Discord support link replacing caffeine.ai attribution.",
   "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup requiring name input before accessing the application.",
-  "frontend/src/index.css": "Global styles with OKLCH color system using purple accent theme for both light and dark modes with professional Minecraft store aesthetic."
+  "frontend/src/index.css": "Global styles with OKLCH color system for light and dark modes, Minecraft-themed background wrapper and overlay classes, and motion-safe media query to respect user preferences.",
+  "frontend/tailwind.config.js": "Tailwind configuration with OKLCH color system and custom animations (float, glow, shimmer) for subtle Aura MC branding effects throughout the application."
 }

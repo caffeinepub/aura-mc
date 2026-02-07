@@ -1,95 +1,111 @@
 {
   "kind": "build_request",
-  "title": "Persist orders in Motoko backend and show post-checkout order confirmation",
+  "title": "Add Bundle category + Farm the Aura hero copy + animated Aura MC branding + show ₹ cart total in header",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-8",
-      "text": "Implement backend order persistence in the single Motoko actor: when a user submits checkout/transaction details, create and store an Order containing (1) generated order id, (2) line items (product name, unit price in ₹, quantity), (3) computed total in ₹, (4) buyer Minecraft username, (5) UPI payment reference/UTR, and (6) timestamp.",
-      "target": "backend",
+      "id": "REQ-19",
+      "text": "Add a new top-level store option named \"Bundle\" alongside the existing top-level options (Lifesteal, Token SMP, Aura SMP, BoxPVP) so users can browse and purchase a bundle.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-9"
+          "msg-5"
         ],
         "quotes": [
-          "add a transaction page in view cart soo they can buy add only upi option to buy stuff",
-          "add add to Cart where it is written rupees"
+          "add a 1 more option of bundle"
         ]
       },
       "acceptanceCriteria": [
-        "A stable Order type/model exists in the backend with fields: orderId, items[{name, unitPriceInr, quantity}], totalInr, minecraftUsername, upiUtr, createdAt (timestamp).",
-        "A new order can be created and stored without losing data across page refreshes and subsequent calls (i.e., persisted in canister state).",
-        "The backend generates a unique orderId for each submitted order.",
-        "The backend computes totalInr from the provided line items (unitPriceInr * quantity) and stores the computed value with the order."
+        "Homepage shows a fifth primary navigation tile/card labeled \"Bundle\" alongside the existing four categories.",
+        "Clicking \"Bundle\" navigates to a category page like other categories (same route pattern)."
       ]
     },
     {
-      "id": "REQ-9",
-      "text": "Expose backend canister methods for checkout flow: (1) createOrder(payload) -> orderId and (2) getOrderById(orderId) -> order details for confirmation display.",
-      "target": "backend",
+      "id": "REQ-20",
+      "text": "Implement the Bundle catalog content exactly as specified: a single purchasable bundle item priced in INR (₹1750) with the listed included rewards and the note that it is valid in any 1 realm.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-9"
+          "msg-5"
         ],
         "quotes": [
-          "add a transaction page in view cart soo they can buy",
-          "add add to Cart"
+          "you will get 5🔑 top keys 3 months top rank 750🪙 coins 10M 💸money For rupees sign 1750 valid in any 1  realm"
         ]
       },
       "acceptanceCriteria": [
-        "There is a callable canister update method to create an order and return the generated orderId.",
-        "There is a callable canister query (or update) method to fetch a stored order by id, returning all stored fields.",
-        "If getOrderById is called with an unknown orderId, the method returns an explicit 'not found' result (does not trap)."
+        "The catalog data includes a new category with id \"bundle\" and name \"Bundle\".",
+        "The Bundle category contains exactly one purchasable item priced at ₹1750.",
+        "The Bundle item display includes the included rewards list: \"5🔑 Top Keys\", \"3 Months Top Rank\", \"750🪙 Coins\", \"10M 💸 Money\" and a note: \"Valid in any 1 realm\" (English, same meaning).",
+        "The Bundle item can be added to cart and behaves like all other products (quantity increases if added multiple times, removable, included in totals)."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Wire the frontend transaction/checkout submission to the backend createOrder method, and after successful submission show an order confirmation view that displays: order id, Minecraft username, UPI UTR/reference, purchased items (name, quantity, unit price in ₹), and final total in ₹.",
-      "target": "both",
+      "id": "REQ-21",
+      "text": "Update the homepage hero section to prominently include the phrase \"Farm the Aura\" using a high-quality display font style that matches the site’s premium/professional aesthetic.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-9"
+          "msg-5"
         ],
         "quotes": [
-          "add a transaction page in view cart soo they can buy",
-          "add only upi option to buy stuff"
+          "write farm the aura in good font on first page"
         ]
       },
       "acceptanceCriteria": [
-        "Submitting the transaction form calls the backend createOrder method with the cart line items and buyer details.",
-        "After createOrder succeeds, the UI navigates to (or renders) a confirmation state/view that shows the returned orderId and the full order summary.",
-        "The confirmation view fetches the order details from the backend via getOrderById (or uses returned data plus a fetch-by-id) and renders values in English.",
-        "All money amounts are displayed using the ₹ symbol and INR values.",
-        "The cart is cleared only after an order is successfully created (not on failed submission)."
+        "Homepage hero shows \"Farm the Aura\" as a prominent headline/sub-headline in addition to the existing Aura MC Store title and the \"Happy Gaming\" / \"Happy Shopping\" lines.",
+        "User-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "text": "Add subtle, professional animations for Aura MC branding across the site (e.g., logo/brand text animation in the header and/or hero), without reducing readability or performance.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "animate  Aura mc every where"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Aura MC brand element(s) (logo and/or \"Aura MC\" text) have a subtle animation (e.g., float, shimmer, glow pulse) visible on the homepage and in the persistent header.",
+        "Animations do not interfere with navigation, form inputs, or reading product/cart/checkout details."
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "text": "Enhance the header cart entry point to show INR context by displaying the current cart subtotal formatted in ₹ next to the cart button when the cart is not empty (while keeping the existing cart item count indicator).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "on top add add to Cart where it is written rupees"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When cart has items, the header shows a cart entry point that includes the subtotal formatted in INR (₹) next to the cart icon/button.",
+        "When cart is empty, the header cart entry point does not show a misleading ₹ amount (may show just the icon or ₹0 depending on existing design, but must be clear).",
+        "The existing cart item count badge continues to work."
       ]
     }
   ],
   "constraints": [
-    "Keep all Motoko logic in a single main actor (no multi-canister or multi-actor backend design).",
-    "Do not edit files under frontend/src/components/ui or other immutablePaths; compose existing UI components instead.",
-    "Do not add any non-UPI payment method options to checkout UI."
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional canisters/services).",
+    "Do not edit files under frontend/src/components/ui or any other paths listed in frontend.immutablePaths.",
+    "All user-facing text must be in English.",
+    "Do not serve images from the backend; frontend must use static assets under frontend/public/assets/generated for any imagery."
   ],
   "nonGoals": [
-    "Processing payments automatically (no payment gateway integration).",
-    "Generating UPI QR codes or deep links.",
-    "Admin dashboard for managing orders.",
-    "Third-party authentication beyond Internet Identity."
+    "Adding new payment methods beyond UPI.",
+    "Adding third-party authentication providers (only Internet Identity is supported).",
+    "Introducing external databases or off-chain storage.",
+    "Changing existing Lifesteal/Token SMP/Aura SMP/BoxPVP catalog structure beyond what is required to add the new Bundle category."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

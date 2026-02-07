@@ -1,10 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Build a professional Minecraft server store website for Aura MC with a categorized product catalog (Lifesteal, Token SMP, Aura SMP, BoxPVP), add-to-cart and view cart flow, and a checkout/transaction page supporting UPI-only payments, priced in INR (₹), plus homepage messaging, Discord link, and server IP.",
+  "projectStateVersion": 11,
+  "summary": "Build a professional Minecraft server store website for Aura MC styled like Apple MC/Blockfun Store with a categorized product catalog (Lifesteal, Token SMP, Aura SMP, BoxPVP) plus a new Bundle option, add-to-cart and view cart flow, and a checkout/transaction page supporting UPI-only payments priced in INR (₹). Homepage includes \"Happy Gaming\"/\"Happy Shopping\", \"Farm the Aura\" hero text, Discord link, server IP, animated Aura MC branding, and a View Cart entry; checkout collects in-game name plus Discord name and UPI UTR, includes delivery-time notice and support/footer messaging, and the UI uses professional emojis/icons and imagery plus a \"Mini Game Store\" coming-soon section.",
   "architectural_notes": [
     "Currency display must be INR (₹/rupees).",
-    "Payments limited to UPI only (no other payment methods)."
+    "Payments limited to UPI only (no other payment methods).",
+    "Checkout must collect both Discord name and Minecraft in-game name; instruct users to enter exact names.",
+    "Add clear notices: delivery may take time; purchases are for in-game items only; include Discord support link in footer.",
+    "Include Minecraft-themed background imagery on every page; add a store-like image/illustration on the cart page for extra polish.",
+    "Add a top-level \"Bundle\" category/option alongside Lifesteal/Token SMP/Aura SMP/BoxPVP and ensure its bundle item details and ₹1750 price are displayed exactly as specified.",
+    "Homepage must include \"Farm the Aura\" hero text and the Aura MC branding should include tasteful animations (without harming readability/performance)."
   ],
   "known_issues": [],
   "isFixRequest": false,
@@ -64,6 +69,110 @@
         "REQ-10"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-checkout-transaction-form-to-collect-both-1-discord-name-and-2-minecraft-in-game-name-and-show-an-explicit-instruction-that-users-must-enter-both-names-exactly-as-they-appear-in-discord-minecraft",
+      "title": "Update the checkout/transaction form to collect both (1) Discord name and (2) Minecraft in-game name, and show an explicit instruction that users must enter both names exactly as they appear in Discord/Minecraft.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-the-buyer-s-discord-name-with-each-order-extend-the-backend-order-payload-and-stored-order-data-to-include-a-discord-name-field-and-return-it-in-order-confirmation-queries-so-the-frontend-can-display-it",
+      "title": "Persist the buyer’s Discord name with each order: extend the backend order payload and stored order data to include a Discord name field, and return it in order confirmation queries so the frontend can display it.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-storefront-messaging-requested-by-the-user-1-on-the-cart-page-display-a-clear-disclaimer-that-the-user-is-paying-real-money-for-in-game-items-2-on-checkout-and-or-order-confirmation-display-a-clear-notice-that-delivery-can-take-time-3-add-a-support-callout-pointing-users-to-the-discord-link-and-add-by-aura-mc-branding-text-at-the-end-of-the-page-footer",
+      "title": "Add storefront messaging requested by the user: (1) on the cart page, display a clear disclaimer that the user is paying real money for in-game items; (2) on checkout and/or order confirmation, display a clear notice that delivery can take time; (3) add a support callout pointing users to the Discord link, and add “By Aura MC” branding text at the end of the page/footer.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-mini-game-store-coming-soon-section-to-the-homepage-as-a-visible-non-clickable-coming-soon-area-that-matches-the-rest-of-the-professional-storefront-design",
+      "title": "Add a “Mini Game Store (Coming Soon)” section to the homepage as a visible, non-clickable coming-soon area that matches the rest of the professional storefront design.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-professional-emojis-icons-to-the-ui-for-the-store-categories-and-subcategories-coins-ranks-money-lifesteal-token-smp-aura-smp-boxpvp-and-improve-the-visual-polish-while-keeping-all-user-facing-text-in-english",
+      "title": "Add professional emojis/icons to the UI for the store categories and subcategories (coins, ranks, money; Lifesteal, Token SMP, Aura SMP, BoxPVP) and improve the visual polish while keeping all user-facing text in English.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-footer-to-remove-the-caffeine-ai-promotional-copy-and-instead-show-aura-mc-branding-plus-the-requested-support-message-pointing-users-to-discord",
+      "title": "Update the site footer to remove the caffeine.ai promotional copy and instead show Aura MC branding plus the requested support message pointing users to Discord.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-minecraft-themed-background-imagery-across-the-storefront-pages-home-category-catalog-cart-checkout-and-order-confirmation-so-each-page-has-a-consistent-minecraft-like-background-while-preserving-readability-of-all-text-and-ui-elements",
+      "title": "Add Minecraft-themed background imagery across the storefront pages (Home, Category/Catalog, Cart, Checkout, and Order Confirmation) so each page has a consistent Minecraft-like background while preserving readability of all text and UI elements.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-professional-store-like-minecraft-themed-image-illustration-to-the-cart-page-to-increase-visual-polish-without-reducing-the-clarity-of-cart-items-totals-and-the-disclaimer-text",
+      "title": "Add a professional store-like Minecraft-themed image/illustration to the Cart page to increase visual polish, without reducing the clarity of cart items, totals, and the disclaimer text.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-top-level-store-option-named-bundle-alongside-the-existing-top-level-options-lifesteal-token-smp-aura-smp-boxpvp-so-users-can-browse-and-purchase-a-bundle",
+      "title": "Add a new top-level store option named \"Bundle\" alongside the existing top-level options (Lifesteal, Token SMP, Aura SMP, BoxPVP) so users can browse and purchase a bundle.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-bundle-catalog-content-exactly-as-specified-a-single-purchasable-bundle-item-priced-in-inr-1750-with-the-listed-included-rewards-and-the-note-that-it-is-valid-in-any-1-realm",
+      "title": "Implement the Bundle catalog content exactly as specified: a single purchasable bundle item priced in INR (₹1750) with the listed included rewards and the note that it is valid in any 1 realm.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-homepage-hero-section-to-prominently-include-the-phrase-farm-the-aura-using-a-high-quality-display-font-style-that-matches-the-site-s-premium-professional-aesthetic",
+      "title": "Update the homepage hero section to prominently include the phrase \"Farm the Aura\" using a high-quality display font style that matches the site’s premium/professional aesthetic.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-subtle-professional-animations-for-aura-mc-branding-across-the-site-e-g-logo-brand-text-animation-in-the-header-and-or-hero-without-reducing-readability-or-performance",
+      "title": "Add subtle, professional animations for Aura MC branding across the site (e.g., logo/brand text animation in the header and/or hero), without reducing readability or performance.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-header-cart-entry-point-to-show-inr-context-by-displaying-the-current-cart-subtotal-formatted-in-next-to-the-cart-button-when-the-cart-is-not-empty-while-keeping-the-existing-cart-item-count-indicator",
+      "title": "Enhance the header cart entry point to show INR context by displaying the current cart subtotal formatted in ₹ next to the cart button when the cart is not empty (while keeping the existing cart item count indicator).",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -119,6 +228,36 @@
       "reqIds": [
         "REQ-9"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Checkout form: collect Discord name + in-game name (with instruction to enter exact names), include delivery may take time notice, and show footer/support text directing users to Discord",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add storefront messaging and UX polish: cart disclaimer that payment is for in-game items; add professional emojis/icons for categories (coins, ranks, money, Lifesteal, Token SMP, Aura SMP, BoxPVP) and a 'Mini Game Store (Coming Soon)' section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add Minecraft-themed background imagery across all pages (home/catalog/cart/checkout), including a store-like image in the cart, to improve visual polish",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a new top-level \"Bundle\" option on the homepage/catalog with a bundle item (₹1750) listing included rewards (5🔑 top keys, 3 months top rank, 750🪙 coins, 10M 💸 money) and note it's valid in any 1 realm",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Homepage hero copy: add prominent \"Farm the Aura\" text in a good font, and add subtle animations for Aura MC branding across the site",
+      "reqIds": [],
       "status": "pending"
     }
   ],

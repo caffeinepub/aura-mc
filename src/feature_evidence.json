@@ -2,15 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-wire-the-frontend-transaction-checkout-submission-to-the-backend-createorder-method-and-after-successful-submission-show-an-order-confirmation-view-that-displays-order-id-minecraft-username-upi-utr-reference-purchased-items-name-quantity-unit-price-in-and-final-total-in",
-      "featureTitle": "Wire the frontend transaction/checkout submission to the backend createOrder method, and after successful submission show an order confirmation view that displays: order id, Minecraft username, UPI UTR/reference, purchased items (name, quantity, unit price in ₹), and final total in ₹.",
+      "featureId": "feature-add-a-new-top-level-store-option-named-bundle-alongside-the-existing-top-level-options-lifesteal-token-smp-aura-smp-boxpvp-so-users-can-browse-and-purchase-a-bundle",
+      "featureTitle": "Add a new top-level store option named \"Bundle\" alongside the existing top-level options (Lifesteal, Token SMP, Aura SMP, BoxPVP) so users can browse and purchase a bundle.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/CartPage.tsx",
-        "frontend/src/pages/CheckoutPage.tsx",
-        "frontend/src/pages/OrderConfirmationPage.tsx",
-        "frontend/src/state/cart.ts",
-        "frontend/src/utils/inr.ts"
+        "frontend/src/data/products.ts",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,10 +14,94 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-10"
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-bundle-catalog-content-exactly-as-specified-a-single-purchasable-bundle-item-priced-in-inr-1750-with-the-listed-included-rewards-and-the-note-that-it-is-valid-in-any-1-realm",
+      "featureTitle": "Implement the Bundle catalog content exactly as specified: a single purchasable bundle item priced in INR (₹1750) with the listed included rewards and the note that it is valid in any 1 realm.",
+      "files": [
+        "frontend/src/data/products.ts",
+        "frontend/src/pages/CategoryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-homepage-hero-section-to-prominently-include-the-phrase-farm-the-aura-using-a-high-quality-display-font-style-that-matches-the-site-s-premium-professional-aesthetic",
+      "featureTitle": "Update the homepage hero section to prominently include the phrase \"Farm the Aura\" using a high-quality display font style that matches the site’s premium/professional aesthetic.",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-subtle-professional-animations-for-aura-mc-branding-across-the-site-e-g-logo-brand-text-animation-in-the-header-and-or-hero-without-reducing-readability-or-performance",
+      "featureTitle": "Add subtle, professional animations for Aura MC branding across the site (e.g., logo/brand text animation in the header and/or hero), without reducing readability or performance.",
+      "files": [
+        "frontend/src/components/Header.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enhance-the-header-cart-entry-point-to-show-inr-context-by-displaying-the-current-cart-subtotal-formatted-in-next-to-the-cart-button-when-the-cart-is-not-empty-while-keeping-the-existing-cart-item-count-indicator",
+      "featureTitle": "Enhance the header cart entry point to show INR context by displaying the current cart subtotal formatted in ₹ next to the cart button when the cart is not empty (while keeping the existing cart item count indicator).",
+      "files": [
+        "frontend/src/components/Header.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-23"
       ],
       "confidence": "high"
     }

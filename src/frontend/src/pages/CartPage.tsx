@@ -42,7 +42,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 flex items-center gap-4">
           <Button asChild variant="outline" size="icon">
@@ -53,55 +53,70 @@ export default function CartPage() {
           <h1 className="text-3xl font-bold">Shopping Cart</h1>
         </div>
 
+        <div className="mb-6 rounded-lg border border-blue-500/50 bg-blue-500/10 p-4 backdrop-blur-sm">
+          <p className="text-sm text-blue-900 dark:text-blue-200">
+            💰 <strong>Important:</strong> You are paying real money for in-game items. 
+            Delivery is not instantaneous and may take some time after payment confirmation.
+          </p>
+        </div>
+
         <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <div className="space-y-4">
-              {items.map((item) => (
-                <Card key={item.id}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h3 className="font-semibold">{item.name}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {item.category} • {item.subcategory}
-                        </p>
-                        <p className="mt-2 font-bold">{formatINR(item.price)}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          <Minus className="h-4 w-4" />
-                        </Button>
-                        <span className="w-8 text-center font-semibold">
-                          {item.quantity}
-                        </span>
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="destructive"
-                          size="icon"
-                          onClick={() => removeItem(item.id)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+          <div className="space-y-4 lg:col-span-2">
+            {items.map((item) => (
+              <Card key={item.id} className="backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-semibold">{item.name}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {item.category} • {item.subcategory}
+                      </p>
+                      <p className="mt-2 font-bold">{formatINR(item.price)}</p>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <span className="w-8 text-center font-semibold">
+                        {item.quantity}
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="icon"
+                        onClick={() => removeItem(item.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+
+            <Card className="overflow-hidden backdrop-blur-sm">
+              <CardContent className="p-0">
+                <img
+                  src="/assets/generated/auramc-cart-store-illustration.dim_1400x700.png"
+                  alt="Aura MC Store"
+                  className="h-auto w-full object-cover"
+                />
+              </CardContent>
+            </Card>
           </div>
 
           <div className="lg:col-span-1">
-            <Card className="sticky top-8">
+            <Card className="sticky top-8 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>

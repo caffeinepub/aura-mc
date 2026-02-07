@@ -20,6 +20,7 @@ export default function CheckoutPage() {
   const { mutate: createOrder, isPending } = useCreateOrder();
 
   const [minecraftUsername, setMinecraftUsername] = useState('');
+  const [discordName, setDiscordName] = useState('');
   const [upiReference, setUpiReference] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,6 +28,11 @@ export default function CheckoutPage() {
 
     if (!minecraftUsername.trim()) {
       toast.error('Please enter your Minecraft username');
+      return;
+    }
+
+    if (!discordName.trim()) {
+      toast.error('Please enter your Discord name');
       return;
     }
 
@@ -44,6 +50,7 @@ export default function CheckoutPage() {
     createOrder(
       {
         buyer: minecraftUsername,
+        discordName: discordName,
         upiRef: upiReference,
         items: orderItems,
       },
@@ -109,6 +116,25 @@ export default function CheckoutPage() {
                         onChange={(e) => setMinecraftUsername(e.target.value)}
                         required
                       />
+                      <p className="text-xs text-muted-foreground">
+                        Please enter your name exactly as it appears in Minecraft
+                      </p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="discord-name">
+                        Discord Name *
+                      </Label>
+                      <Input
+                        id="discord-name"
+                        placeholder="Enter your Discord name"
+                        value={discordName}
+                        onChange={(e) => setDiscordName(e.target.value)}
+                        required
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Please enter your name exactly as it appears in Discord
+                      </p>
                     </div>
 
                     <div className="space-y-2">
@@ -134,6 +160,13 @@ export default function CheckoutPage() {
                         <li>Note down the transaction reference (UTR)</li>
                         <li>Enter the UTR above and submit</li>
                       </ol>
+                    </div>
+
+                    <div className="rounded-lg border border-amber-500/50 bg-amber-500/10 p-4">
+                      <p className="text-sm text-amber-900 dark:text-amber-200">
+                        ⏱️ <strong>Please note:</strong> Delivery may take time after payment confirmation. 
+                        Your items will be delivered to your in-game account.
+                      </p>
                     </div>
                   </CardContent>
                 </Card>

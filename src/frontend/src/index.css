@@ -65,3 +65,33 @@
         @apply bg-background text-foreground;
     }
 }
+
+@layer components {
+    .minecraft-bg-wrapper {
+        @apply relative min-h-screen;
+        background-image: url('/assets/generated/auramc-minecraft-bg-texture.dim_1920x1080.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    .minecraft-bg-overlay {
+        @apply absolute inset-0 z-0;
+        background: oklch(var(--background) / 0.85);
+        backdrop-filter: blur(2px);
+    }
+
+    .dark .minecraft-bg-overlay {
+        background: oklch(var(--background) / 0.90);
+        backdrop-filter: blur(3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-glow,
+    .animate-shimmer {
+        animation: none !important;
+    }
+}

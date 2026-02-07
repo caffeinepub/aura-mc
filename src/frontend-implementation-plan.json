@@ -1,53 +1,103 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Checkout submission + order confirmation view wired to Motoko order APIs",
+  "title": "Bundle category, Aura MC hero/branding enhancements, and INR cart subtotal in header",
   "requirements": [
     {
-      "id": "REQ-10",
-      "summary": "Submit UPI checkout details to backend createOrder and show a post-checkout confirmation view with persisted order details",
+      "id": "REQ-19",
+      "summary": "Add a new top-level \"Bundle\" store category and make it navigable like existing categories.",
       "acceptanceCriteria": [
-        "Submitting the transaction form calls the backend createOrder method with the cart line items and buyer details.",
-        "After createOrder succeeds, the UI navigates to (or renders) a confirmation state/view that shows the returned orderId and the full order summary.",
-        "The confirmation view fetches the order details from the backend via getOrderById (or uses returned data plus a fetch-by-id) and renders values in English.",
-        "All money amounts are displayed using the ₹ symbol and INR values.",
-        "The cart is cleared only after an order is successfully created (not on failed submission)."
+        "Homepage shows a fifth primary navigation tile/card labeled \"Bundle\" alongside the existing four categories.",
+        "Clicking \"Bundle\" navigates to a category page like other categories (same route pattern)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/hooks/useOrders.ts",
-          "operation": "create",
-          "description": "Add a small orders hook that uses useActor() to call backend createOrder and getOrderById, exposing loading/error states appropriate for the checkout + confirmation UI."
-        },
-        {
-          "path": "frontend/src/utils/inr.ts",
-          "operation": "create",
-          "description": "Add INR formatting utilities to render bigint INR amounts with the ₹ symbol consistently across checkout and confirmation views."
-        },
-        {
-          "path": "frontend/src/pages/CheckoutPage.tsx",
-          "operation": "create",
-          "description": "Create a UPI-only checkout/transaction page that collects Minecraft username + UPI UTR/reference, reads current cart line items, calls createOrder on submit, and only clears the cart after success (do not introduce any non-UPI payment options). Compose existing shadcn/ui components from frontend/src/components/ui (do not modify them). Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/OrderConfirmationPage.tsx",
-          "operation": "create",
-          "description": "Create an order confirmation page that takes an orderId from route params/state, fetches order details via getOrderById, and renders order id, Minecraft username, UPI UTR/reference, items (name/product, quantity, unit price ₹), and total ₹ in English. Compose existing shadcn/ui components from frontend/src/components/ui (do not modify them). Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/state/cart.ts",
-          "operation": "create",
-          "description": "Add/centralize cart state helpers (read items, update quantities, clear cart) so checkout can reliably read line items and clear only after successful order creation (persist in local storage if the existing app already does so)."
-        },
-        {
-          "path": "frontend/src/pages/CartPage.tsx",
+          "path": "frontend/src/data/products.ts",
           "operation": "modify",
-          "description": "Wire the existing cart page to navigate to the new checkout page and ensure the cart line items passed/available to checkout include product name, unit price in ₹ (INR), and quantity."
+          "description": "Add a new top-level category with id \"bundle\" and name \"Bundle\" so it appears alongside existing categories."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Register routes for the checkout page and the order confirmation page (e.g., /checkout and /order/:orderId) and wire navigation so successful checkout redirects to confirmation."
+          "description": "Ensure the category tiles grid comfortably supports 5 tiles and add an icon mapping entry for the new \"bundle\" category so the tile renders consistently."
+        }
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "summary": "Implement the Bundle catalog as a single ₹1750 purchasable item with the specified included rewards and validity note, fully cart-compatible.",
+      "acceptanceCriteria": [
+        "The catalog data includes a new category with id \"bundle\" and name \"Bundle\".",
+        "The Bundle category contains exactly one purchasable item priced at ₹1750.",
+        "The Bundle item display includes the included rewards list: \"5🔑 Top Keys\", \"3 Months Top Rank\", \"750🪙 Coins\", \"10M 💸 Money\" and a note: \"Valid in any 1 realm\" (English, same meaning).",
+        "The Bundle item can be added to cart and behaves like all other products (quantity increases if added multiple times, removable, included in totals)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/products.ts",
+          "operation": "modify",
+          "description": "Add exactly one Bundle product priced at 1750 (INR) and include structured display text for rewards (\"5🔑 Top Keys\", \"3 Months Top Rank\", \"750🪙 Coins\", \"10M 💸 Money\") plus the note \"Valid in any 1 realm\" via optional product metadata fields."
+        },
+        {
+          "path": "frontend/src/pages/CategoryPage.tsx",
+          "operation": "modify",
+          "description": "Extend product rendering to show the Bundle item’s included rewards list and validity note when present, while keeping add-to-cart behavior identical to other products."
+        }
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "summary": "Add prominent \"Farm the Aura\" hero copy in a premium/professional display style on the homepage.",
+      "acceptanceCriteria": [
+        "Homepage hero shows \"Farm the Aura\" as a prominent headline/sub-headline in addition to the existing Aura MC Store title and the \"Happy Gaming\" / \"Happy Shopping\" lines.",
+        "User-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Update the hero section to include the phrase \"Farm the Aura\" as a prominent headline/sub-headline using a high-quality display styling aligned with the current Tailwind theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "summary": "Add subtle, professional Aura MC branding animations in the homepage hero and persistent header without harming usability/performance.",
+      "acceptanceCriteria": [
+        "Aura MC brand element(s) (logo and/or \"Aura MC\" text) have a subtle animation (e.g., float, shimmer, glow pulse) visible on the homepage and in the persistent header.",
+        "Animations do not interfere with navigation, form inputs, or reading product/cart/checkout details."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Add lightweight keyframes/animation utilities for subtle branding effects (e.g., slow float/glow) suitable for motion-safe usage."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Apply subtle motion-safe animation classes to the Aura MC logo and/or brand text in the persistent header while preserving layout stability and click targets."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Apply subtle motion-safe animation classes to Aura MC branding elements within the hero (e.g., logo) ensuring readability and performance."
+        }
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "summary": "Show the current cart subtotal formatted in ₹ in the header cart entry point when cart is not empty, while keeping the item count badge.",
+      "acceptanceCriteria": [
+        "When cart has items, the header shows a cart entry point that includes the subtotal formatted in INR (₹) next to the cart icon/button.",
+        "When cart is empty, the header cart entry point does not show a misleading ₹ amount (may show just the icon or ₹0 depending on existing design, but must be clear).",
+        "The existing cart item count badge continues to work."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Compute cart subtotal from the Zustand cart store and display it formatted via the existing INR formatter next to the cart icon/button only when cart is non-empty, keeping the existing count badge behavior."
         }
       ]
     }
